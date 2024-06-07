@@ -5,7 +5,7 @@ echo "\n"
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 
-zinit snippet PZT::modules/fasd/init.zsh
+# zinit snippet PZT::modules/fasd/init.zsh
 zinit snippet PZT::modules/environment/init.zsh
 zinit snippet PZT::modules/history/init.zsh
 zinit snippet PZT::modules/utility/init.zsh

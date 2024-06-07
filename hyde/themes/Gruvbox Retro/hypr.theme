@@ -33,7 +33,11 @@ group {
 
 decoration {
     rounding = 3
-    drop_shadow = false
+    drop_shadow = true
+    shadow_range = 30
+    shadow_render_power = 9
+    col.shadow = rgba(90ceaaff)
+    col.shadow_inactive=rgba(1e8b50d9)
 
     blur {
         enabled = yes
