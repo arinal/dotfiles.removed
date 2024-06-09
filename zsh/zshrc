@@ -1,16 +1,11 @@
-# show_logos=("colorscript -r" "pokemon-colorscripts -r")
+autoload -Uz compinit && compinit
+bindkey -v
+
 show_logos=("fastfetch" "pokemon-colorscripts -r")
 $(shuf -n1 -e "${show_logos[@]}")
 echo "\n"
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-
-# zinit snippet PZT::modules/fasd/init.zsh
-zinit snippet PZT::modules/environment/init.zsh
-zinit snippet PZT::modules/history/init.zsh
-zinit snippet PZT::modules/utility/init.zsh
-zinit snippet PZT::modules/completion/init.zsh
-bindkey -v
 
 zinit ice lucid wait"0" atclone"sed -ie 's/fc -rl 1/fc -rli 1/' shell/key-bindings.zsh" \
   atpull"%atclone" multisrc"shell/{completion,key-bindings}.zsh" id-as junegunn/fzf_completions \
@@ -18,8 +13,6 @@ zinit ice lucid wait"0" atclone"sed -ie 's/fc -rl 1/fc -rli 1/' shell/key-bindin
 zinit light junegunn/fzf
 
 zinit light Aloxaf/fzf-tab
-# zinit light wookayin/fzf-fasd
-zinit light mafredri/zsh-async
 zinit ice wait'0' blockf lucid; zinit light zsh-users/zsh-completions
 zinit ice lucid wait"1" lucid atload"!_zsh_autosuggest_start"; zinit load zsh-users/zsh-autosuggestions
 zinit ice from'gh-r' as'program'; zinit light sei40kr/fast-alias-tips-bin
@@ -27,13 +20,14 @@ zinit light sei40kr/zsh-fast-alias-tips
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-alias mkdir='mkdir -p'
 alias ls='lsd'
 alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
+alias mkdir='mkdir -p'
 alias tm='tmux'
+alias e=$EDITOR
 alias ee='neovide'
 alias f=ranger
 alias ldr=lazydocker

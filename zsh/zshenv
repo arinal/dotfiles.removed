@@ -3,6 +3,7 @@ export VISUAL=nvim
 export PAGER=bat
 export TERMINAL=kitty
 export BROWSER=firefox
+export HISTFILE=~/.zsh_history
 
 # FZF
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" 2> /dev/null'
