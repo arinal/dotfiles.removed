@@ -1,0 +1,6 @@
+[flavor]
+# use = "catppuccin-frappe"
+# use = "catppuccin-latte"
+# use = "catppuccin-macchiato"
+# use = "catppuccin-mocha"
+use = "rose-pine"

@@ -18,7 +18,7 @@ zinit ice lucid wait"0" atclone"sed -ie 's/fc -rl 1/fc -rli 1/' shell/key-bindin
 zinit light junegunn/fzf
 
 zinit light Aloxaf/fzf-tab
-zinit light wookayin/fzf-fasd
+# zinit light wookayin/fzf-fasd
 zinit light mafredri/zsh-async
 zinit ice wait'0' blockf lucid; zinit light zsh-users/zsh-completions
 zinit ice lucid wait"1" lucid atload"!_zsh_autosuggest_start"; zinit load zsh-users/zsh-autosuggestions
@@ -73,7 +73,18 @@ preexec() {
   echo -ne '\e[5 q'
 }
 
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd j)"
+alias zi=__zoxide_zi $@
+
+## yazi file manager
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 ## p10k, to customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
