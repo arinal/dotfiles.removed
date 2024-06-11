@@ -1,7 +1,10 @@
+setopt NO_HUP
+setopt interactivecomments
+
 autoload -Uz compinit && compinit
 bindkey -v
 
-show_logos=("fastfetch" "pokemon-colorscripts -r")
+show_logos=("fastfetch" "pokemon-colorscripts -r --no-title")
 $(shuf -n1 -e "${show_logos[@]}")
 echo "\n"
 
@@ -12,6 +15,8 @@ zinit ice lucid wait"0" atclone"sed -ie 's/fc -rl 1/fc -rli 1/' shell/key-bindin
   pick"/dev/null"
 zinit light junegunn/fzf
 
+zinit snippet PZT::modules/history/init.zsh
+
 zinit light Aloxaf/fzf-tab
 zinit ice wait'0' blockf lucid; zinit light zsh-users/zsh-completions
 zinit ice lucid wait"1" lucid atload"!_zsh_autosuggest_start"; zinit load zsh-users/zsh-autosuggestions
@@ -19,7 +24,11 @@ zinit ice from'gh-r' as'program'; zinit light sei40kr/fast-alias-tips-bin
 zinit light sei40kr/zsh-fast-alias-tips
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit light mafredri/zsh-async
 
+alias f=yy # yazi file manager
+alias e=$EDITOR
+alias ee='neovide&'
 alias ls='lsd'
 alias l='ls -l'
 alias la='ls -a'
@@ -27,9 +36,6 @@ alias lla='ls -la'
 alias lt='ls --tree'
 alias mkdir='mkdir -p'
 alias tm='tmux'
-alias e=$EDITOR
-alias ee='neovide'
-alias f=ranger
 alias ldr=lazydocker
 alias g=lazygit
 alias jy='convfmt -f json -t yaml'
