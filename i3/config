@@ -1,0 +1,165 @@
+set $mod Mod4
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left  60 px
+bindsym $mod+Shift+j move down  60 px
+bindsym $mod+Shift+k move up    60 px
+bindsym $mod+Shift+l move right 60 px
+# bindsym Left resize shrink width 5 px or 5 ppt
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+Shift+v split h
+bindsym $mod+v split v
+bindsym $mod+u fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+f floating toggle
+bindsym $mod+d focus mode_toggle # change focus between tiling / floating windows
+bindsym $mod+a focus parent      # focus the parent container
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym h resize shrink width  5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym j resize grow   height 5 px or 5 ppt
+        bindsym l resize grow   width  5 px or 5 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left  resize shrink width  2 px or 1 ppt
+        bindsym Down  resize grow   height 2 px or 1 ppt
+        bindsym Up    resize shrink height 2 px or 1 ppt
+        bindsym Right resize grow   width  2 px or 1 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+set $browserspace "1  "
+set $tmuxspace    "2  "
+set $chatspace    "3  "
+set $readspace    "4 "
+set $officespace  "5 "
+set $mediaspace   "6 "
+
+set $tmuxspace2 "7  "
+set $idespace   "8 "
+set $freespace1 "9 "
+set $freespace2 "0 "
+
+# switch to workspace
+bindsym $mod+1 workspace $browserspace
+bindsym $mod+2 workspace $tmuxspace
+bindsym $mod+3 workspace $chatspace
+bindsym $mod+4 workspace $readspace
+bindsym $mod+5 workspace $officespace
+bindsym $mod+6 workspace $mediaspace
+
+bindsym $mod+7 workspace $tmuxspace2
+bindsym $mod+8 workspace $idespace
+bindsym $mod+9 workspace $freespace1
+bindsym $mod+0 workspace $freespace2
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $browserspace
+bindsym $mod+Shift+2 move container to workspace $tmuxspace
+bindsym $mod+Shift+3 move container to workspace $chatspace
+bindsym $mod+Shift+4 move container to workspace $readspace
+bindsym $mod+Shift+5 move container to workspace $officespace
+bindsym $mod+Shift+6 move container to workspace $mediaspace
+
+bindsym $mod+Shift+7 move container to workspace $tmuxspace2
+bindsym $mod+Shift+8 move container to workspace $idespace
+bindsym $mod+Shift+9 move container to workspace $freespace1
+bindsym $mod+Shift+0 move container to workspace $freespace2
+
+bindsym $mod+b workspace back_and_forth
+bindsym $mod+n workspace next
+bindsym $mod+p workspace prev
+
+# bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec kitty
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+gaps inner 25
+gaps outer 25
+gaps vertical 20 
+# gaps horizontal 20
+new_window 1pixel
+
+set $bg-color 	         #2f343f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+set $preview-colour      #2f343f
+
+hide_edge_borders vertical
+#font pango:System San Francisco Display 9
+font pango:DejaVuSansMono Nerd Font 9
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $bg-color           $bg-color          $text-color          #preview-colour
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #preview-colour
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #preview-colour
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #preview-colour
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+    # increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-    # decrease sound volume
+bindsym XF86AudioMute        exec --no-startup-id amixer set Master toggle # mute sound
+
+# Media player controls
+bindsym XF86AudioPlay  exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext  exec playerctl next
+bindsym XF86AudioPrev  exec playerctl previous
+
+workspace  $browserspace output DP-3
+workspace  $tmuxspace    output DP-3
+workspace  $chatspace    output DP-3
+workspace  $readspace    output DP-3
+workspace  $officespace  output DP-3
+workspace  $mediaspace   output DP-3
+
+workspace  $tmuxspace2   output eDP-1
+workspace  $idespace     output eDP-1
+workspace  $freespace1   output eDP-1
+workspace  $freespace2   output eDP-1
+
+bindsym $mod+y exec kill -s USR1 $(pidof deadd-notification-center)
+bindsym $mod+space exec rofi -show drun -fullscreen -padding 320 "none" -hide-scrollbar
+# bindsym $mod+space exec rofi -show run -theme-str '#window {fullscreen: true; padding: 320;}' -padding 320 "none"
+bindsym $mod+Shift+x exec i3lock-fancy
+
+exec --no-startup-id i3lock-fancy
+exec_always --no-startup-id xautolock -time 20 -locker i3lock-fancy
+# exec_always --no-startup-id picom --experimental-backends
+exec_always --no-startup-id picom
+exec_always --no-startup-id ~/.config/i3/wallcron.sh 400
+exec_always --no-startup-id ~/.config/polybar/launch.sh

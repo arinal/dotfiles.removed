@@ -29,7 +29,11 @@ group {
 
 decoration {
     rounding = 7
-    drop_shadow = false
+    drop_shadow = true
+    shadow_range = 30
+    shadow_render_power = 9
+    col.shadow = rgba(5A9ACAB4)
+    col.shadow_inactive=rgba(1E8B50D9)
 
     blur {
         enabled = yes

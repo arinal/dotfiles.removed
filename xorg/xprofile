@@ -1,0 +1,6 @@
+xbanish &
+nm-applet &
+deadd-notification-center &
+blueman-applet &
+xset r rate 200 30
+xrandr --output eDP-1 --left-of DP-3 --mode 2560x1440
