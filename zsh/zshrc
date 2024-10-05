@@ -40,7 +40,8 @@ alias ldr=lazydocker
 alias g=lazygit
 alias jy='convfmt -f json -t yaml'
 
-aurhelper='paru'
+# aurhelper='paru'
+aurhelper='yay'
 alias pi='$aurhelper'       # install package
 alias pu='$aurhelper -Rns'  # uninstall package
 alias pup='$aurhelper -Syu' # update system/package/aur
